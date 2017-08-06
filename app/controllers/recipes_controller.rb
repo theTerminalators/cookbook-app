@@ -18,8 +18,30 @@ class RecipesController < ApplicationController
 
   def create
     # where the form goes once it's submitted
-    recipe1 = Recipe.new(chef: params[:chef], ingredients: params[:ingredients], prep_time: params[:prep_time])
-    recipe1.save
+    @recipe1 = Recipe.new(chef: params[:chef], ingredients: params[:ingredients], prep_time: params[:prep_time])
+    @recipe1.save
     render 'create.html.erb'
+  end
+
+  def edit
+    # on my form, show the item that I am editing
+    # grab the item I am editing from the DB
+    @recipe = Recipe.find_by(id: params[:id])
+    render 'edit.html.erb'
+  end
+
+  def update
+    # get the correct recipe
+    @recipe = Recipe.find_by(id: params[:id])
+    @recipe.update(
+      chef: params[:chef],
+      ingredients: params[:ingredients],
+      prep_time: params[:prep_time],
+      directions: params[:directions]
+    )
+    # need the id from the recipe i want to edit
+    # edit that recipe with the information from the form
+
+    render 'update.html.erb'
   end
 end

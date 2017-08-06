@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   # show one particular recipe
   get '/recipes/:id' => 'recipes#show'
 
+  # edit form
+  get '/recipes/:id/edit' => 'recipes#edit'
+
+  patch '/recipes/:id' => 'recipes#update'
+
   # show the user a form
   get '/new_recipe' => 'recipes#show'
   # actually make the new recipe, this is the route the form is pointed at

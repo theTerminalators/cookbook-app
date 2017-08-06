@@ -1,16 +1,22 @@
 class RecipesController < ApplicationController
-  def one_recipe_method
-    @recipe = Recipe.first
-
-    render 'one_recipe_view.html.erb'
+  def index
+    # show all the recipes, grab all the recipes from the db
+    @recipes = Recipe.all
+    render 'index.html.erb'
   end
 
   def show
-    #  show the user the form
+    url_id = params[:id]
+    @recipe = Recipe.find_by(id: url_id)
     render 'show.html.erb'
   end
 
-  def make
+  def new
+    # show some form
+    render 'new.html.erb'
+  end
+
+  def create
     # where the form goes once it's submitted
     recipe1 = Recipe.new(chef: params[:chef], ingredients: params[:ingredients], prep_time: params[:prep_time])
     recipe1.save

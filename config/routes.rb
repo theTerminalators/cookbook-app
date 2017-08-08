@@ -7,16 +7,18 @@ Rails.application.routes.draw do
   get '/recipes/new' => 'recipes#new'
   # show one particular recipe
   get '/recipes/:id' => 'recipes#show'
+  # actually make the new recipe, this is the route the form is pointed at
+  post '/recipes' => 'recipes#create'
 
   # edit form
   get '/recipes/:id/edit' => 'recipes#edit'
 
   patch '/recipes/:id' => 'recipes#update'
 
+  delete '/recipes/:id' => 'recipes#destroy'
+
   # show the user a form
   get '/new_recipe' => 'recipes#show'
-  # actually make the new recipe, this is the route the form is pointed at
-  post '/recipes' => 'recipes#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 

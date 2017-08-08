@@ -18,7 +18,11 @@ class RecipesController < ApplicationController
 
   def create
     # where the form goes once it's submitted
-    @recipe1 = Recipe.new(chef: params[:chef], ingredients: params[:ingredients], prep_time: params[:prep_time])
+    @recipe1 = Recipe.new(
+      chef: params[:chef],
+      ingredients: params[:ingredients],
+      prep_time: params[:prep_time]
+    )
     @recipe1.save
     render 'create.html.erb'
   end
@@ -41,7 +45,13 @@ class RecipesController < ApplicationController
     )
     # need the id from the recipe i want to edit
     # edit that recipe with the information from the form
+  render 'update.html.erb'
+  end
 
-    render 'update.html.erb'
+  def destroy
+    #  write some code to delete the thing
+    @recipe = Recipe.find_by(id: params[:id])
+    @recipe.destroy
+    render 'destroy.html.erb'
   end
 end

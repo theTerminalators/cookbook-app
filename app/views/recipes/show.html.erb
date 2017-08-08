@@ -6,3 +6,8 @@ Here is the one recipe
 <p><%= @recipe.prep_time %></p>
 <p><%= @recipe.image %></p>
 <p><%= @recipe.ingredients %></p>
+
+<!-- make a delete request, how do I make a request that is not a get request? -->
+<%= form_tag "/recipes/#{@recipe.id}", method: :delete do %>
+  <input type="submit" value="Delete me!">
+<% end %>

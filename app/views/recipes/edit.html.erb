@@ -1,5 +1,7 @@
 
 <%= form_tag "/recipes/#{@recipe.id}", method: :patch do %>
+  <p>title<input type="text" name="title" value="<%= @recipe.title %>"></p>
+  <p>image<input type="text" name="image" value="<%= @recipe.image %>"></p>
   <p>ingredients<input type="text" name="ingredients" value="<%= @recipe.ingredients %>"></p>
   <p>chef<input type="text" name="chef" value="<%= @recipe.chef %>"></p>
   <p>directions<input type="text" name="directions" value="<%= @recipe.directions %>"></p>

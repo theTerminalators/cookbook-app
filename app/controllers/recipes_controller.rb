@@ -18,13 +18,17 @@ class RecipesController < ApplicationController
 
   def create
     # where the form goes once it's submitted
-    @recipe1 = Recipe.new(
+    recipe = Recipe.new(
+      title: params[:title],
       chef: params[:chef],
       ingredients: params[:ingredients],
+      directions: params[:directions],
+      image: params[:image],
       prep_time: params[:prep_time]
     )
-    @recipe1.save
-    render 'create.html.erb'
+    recipe.save
+    flash[:success] = "You just created a new recipe"
+    redirect_to "/recipes/#{recipe.id}"
   end
 
   def edit
@@ -36,8 +40,9 @@ class RecipesController < ApplicationController
 
   def update
     # get the correct recipe
-    @recipe = Recipe.find_by(id: params[:id])
-    @recipe.update(
+    recipe = Recipe.find_by(id: params[:id])
+    recipe.update(
+      title: params[:title],
       chef: params[:chef],
       ingredients: params[:ingredients],
       prep_time: params[:prep_time],
@@ -45,13 +50,18 @@ class RecipesController < ApplicationController
     )
     # need the id from the recipe i want to edit
     # edit that recipe with the information from the form
-  render 'update.html.erb'
+
+    flash[:info] = "You just updated the recipe with the title of #{recipe.title}"
+    flash[:success] = "You now have #{Recipe.count} recipes"
+
+    redirect_to "/recipes/#{recipe.id}"
   end
 
   def destroy
     #  write some code to delete the thing
-    @recipe = Recipe.find_by(id: params[:id])
-    @recipe.destroy
-    render 'destroy.html.erb'
+    recipe = Recipe.find_by(id: params[:id])
+    recipe.destroy
+    flash[:danger] = "You just deleted the recipe with the title of #{recipe.title}"
+    redirect_to "/recipes"
   end
 end

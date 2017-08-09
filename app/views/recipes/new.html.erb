@@ -1,6 +1,8 @@
 Here's the form
 
 <%= form_tag "/recipes", method: :post do %>
+  <p>title<input type="text" name="title"></p>
+  <p>image<input type="text" name="image"></p>
   <p>ingredients<input type="text" name="ingredients"></p>
   <p>chef<input type="text" name="chef"></p>
   <p>directions<input type="text" name="directions"></p>

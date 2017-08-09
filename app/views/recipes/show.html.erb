@@ -1,5 +1,6 @@
 Here is the one recipe
 
+<h2><%= @recipe.id %></h2>
 <h2><%= @recipe.title %></h2>
 <p><%= @recipe.chef %></p>
 <p><%= @recipe.directions %></p>
@@ -11,3 +12,5 @@ Here is the one recipe
 <%= form_tag "/recipes/#{@recipe.id}", method: :delete do %>
   <input type="submit" value="Delete me!">
 <% end %>
+
+<a href="/recipes/<%= @recipe.id %>/edit">Edit me!!</a>

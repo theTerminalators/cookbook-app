@@ -1,10 +1,28 @@
-<% @recipes.each do |recipe| %>
-  <h2><a href="/recipes/<%= recipe.id %>"><%= recipe.title %></a></h2>
-  <p>id: <%= recipe.id %></p>
-  <p><%= recipe.chef %></p>
-  <p><%= recipe.directions %></p>
-  <p><%= recipe.prep_time %></p>
-  <p><%= recipe.image %></p>
-  <p><%= recipe.ingredients %></p>
-  <hr>
-<% end %>
+  <% @recipes.each_slice(3) do |three_recipes| %>
+    <div class="row">
+      <% three_recipes.each do |recipe| %>
+        <div class="col-md-4">
+          <div class="well">
+            <h2><a href="/recipes/<%= recipe.id %>"><%= recipe.title %></a></h2>
+            <p>id: <%= recipe.id %></p>
+            <p>chef: <%= recipe.chef %></p>
+            <p>ingredients: </p>
+            <ul>
+              <% recipe.ingredients_list.each do |ingredient| %>
+                <li><%= ingredient %></li>
+              <% end %>
+            </ul>
+            <p>directions: </p>
+            <ol>
+              <% recipe.directions_list.each do |direction| %>
+                <li><%= direction %></li>
+              <% end %>
+            </ol>
+            <p>prep time: <%= recipe.friendly_prep_time %></p>
+            <p>Created on: <%= recipe.friendly_created_at %></p>
+            <img src="<%= recipe.image %>">
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>

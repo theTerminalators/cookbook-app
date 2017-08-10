@@ -15,11 +15,11 @@ class Recipe < ApplicationRecord
     final_string = ""
     hours = prep_time / 60
     if hours > 0
-      final_string += "#{hours.to_s} hours"
+      final_string += "#{hours} hours"
     end
     minutes = prep_time % 60
     if minutes > 0
-      final_string += " #{minutes.to_s} minutes"
+      final_string += " #{minutes} minutes"
     end
     final_string
   end

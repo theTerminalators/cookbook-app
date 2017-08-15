@@ -1,7 +1,10 @@
 class RecipesController < ApplicationController
   def index
-    # show all the recipes, grab all the recipes from the db
-    @recipes = Recipe.all
+    if params[:sort_attribute] && params[:sort_order]
+      @recipes = Recipe.order(params[:sort_attribute] => params[:sort_order])
+    else
+      @recipes = Recipe.all
+    end
     render 'index.html.erb'
   end
 
